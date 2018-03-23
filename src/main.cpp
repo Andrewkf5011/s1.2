@@ -1,26 +1,40 @@
 #include <mbed.h>
-
 #include <stdbool.h>
+#include "components.h"
 
-int main() {
-    bool flashing = false;
+int main()
+{
+  AssignmentBoard board;
 
-    DigitalOut red(PTB22);
-    DigitalIn  btn(PTC6);
+  bool flashing = false;
 
-    while(1) {
-        if( btn.read() ) flashing = true;
-            else         flashing = false;
+  LED redLED(board.K64F_RED_LED);
+  Switch btn(board.K64F_SW2);
 
-        printf("button %d\n", btn.read() );
-        if(flashing){
-            red.write(0);
-            wait(0.5);
-            red.write(1);
-            wait(0.5);
-        }else{
-            red.write(1);
-            wait(1);
-        }
+  while(1)
+  {
+    if(!(btn.isPressed()))
+    {
+      flashing = true;
     }
+    else
+    {
+      flashing = false;
+    }
+
+    printf("button %d\n", btn.isPressed());
+
+    if(flashing)
+    {
+      redLED.on();
+      wait(0.5);
+      redLED.off();
+      wait(0.5);
+    }
+    else
+    {
+      redLED.off();
+      wait(1);
+    }
+  }
 }
