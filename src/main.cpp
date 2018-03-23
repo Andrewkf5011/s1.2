@@ -9,7 +9,7 @@ int main()
   bool flashing = false;
 
   LED redLED(board.K64F_RED_LED);
-  Switch btn(board.K64F_SW2);
+  Switch btn(board.K64F_SW2, true);
 
   while(1)
   {

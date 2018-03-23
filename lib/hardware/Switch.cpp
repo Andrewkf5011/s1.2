@@ -2,11 +2,14 @@
 #include<mbed.h>
 #include<stdbool.h>
 
-Switch::Switch(PinName p) : pin(p,1)
+Switch::Switch(PinName pinName, bool usesPullUpResistor) : pin(pinName)
 {
+
+  Switch::usesPullUpResistor = usesPullUpResistor;
 }
 
 bool Switch::isPressed()
 {
-  return !(pin.read());
+  //Use a bitwise XOR to work out if the pin is being pressed.
+  return ((pin.read()) ^ usesPullUpResistor);
 }

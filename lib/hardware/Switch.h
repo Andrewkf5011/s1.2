@@ -7,10 +7,11 @@
 class Switch
 {
   private:
-    DigitalOut pin;
+    DigitalIn pin;
+    bool usesPullUpResistor;
 
   public:
-    Switch(PinName p);
+    Switch(PinName pinName, bool usesPullUpResistor);
     bool isPressed();
 
 };

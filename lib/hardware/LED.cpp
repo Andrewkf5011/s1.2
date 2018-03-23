@@ -1,7 +1,7 @@
 #include "LED.h"
 #include <mbed.h>
 
-LED::LED(PinName p) : pin(p,1)
+LED::LED(PinName pinName) : pin(pinName,1)
 {
 }
 

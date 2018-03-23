@@ -10,7 +10,7 @@ class LED
     DigitalOut pin;
 
   public:
-    LED(PinName p);
+    LED(PinName pinName);
     void on();
     void off();
 };
